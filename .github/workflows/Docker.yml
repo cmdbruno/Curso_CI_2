@@ -21,3 +21,11 @@ jobs:
         with:
           username: cmdbruno
           password: ${{ secrets.PASSWORD_DOCKER_HUB }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6.18.0
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: cmdbruno/go_ci:${{github.ref_name}}
